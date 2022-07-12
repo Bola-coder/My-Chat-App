@@ -1,11 +1,15 @@
 import React from "react";
-import { useAuthContext } from "../context/authContext";
+import { Link } from "react-router-dom";
+import style from "./../css/Homepage.module.css";
 
 const Homepage = () => {
-  const { signUpWithGoogle } = useAuthContext();
   return (
-    <section>
-      <button onClick={signUpWithGoogle}>Sign in With Google</button>
+    <section className={style.homepage}>
+      <div className={style.homepage__content}>
+        <h1>Abatoms Chat App.</h1>
+        <p>A One stop place for you to chat with friends and families.</p>
+        <Link to="/auth">Get Started</Link>
+      </div>
     </section>
   );
 };
