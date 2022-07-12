@@ -1,14 +1,18 @@
 import React from "react";
 import { useAuthContext } from "../context/authContext";
+import style from "./../css/Authenticate.module.css";
 
 const Authenticate = () => {
-    const { signUpWithGoogle } = useAuthContext();
+  const { authWithGoogle, authWithFacebook } = useAuthContext();
 
   return (
-    <>
-      <p>Login Page</p>
-       <button onClick={signUpWithGoogle}>Sign in With Google</button>
-    </>
+    <section className={style.auth}>
+      <div className={style.auth__content}>
+        <p>Authenticate yourself to get access to the chat platforms</p>
+        <button onClick={authWithGoogle}>Authenticate With Google</button>
+        <button onClick={authWithFacebook}>Authenticate With Facebook</button>
+      </div>
+    </section>
   );
 };
 
