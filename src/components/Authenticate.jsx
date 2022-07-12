@@ -8,7 +8,7 @@ const Authenticate = () => {
   return (
     <section className={style.auth}>
       <div className={style.auth__content}>
-        <p>Authenticate yourself to get access to the chat platforms</p>
+        <p>Authenticate yourself to get access to the chat platform</p>
         <button onClick={authWithGoogle}>Authenticate With Google</button>
         <button onClick={authWithFacebook}>Authenticate With Facebook</button>
       </div>

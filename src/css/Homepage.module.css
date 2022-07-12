@@ -18,6 +18,11 @@
   font-weight: 600;
 }
 
+.homepage__content h1 svg {
+  margin-right: 10px;
+  font-size: 3rem;
+}
+
 .homepage__content p {
   font-size: 2.4rem;
   color: var(--text-color-secondary);

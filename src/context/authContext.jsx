@@ -4,7 +4,9 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "./../utils/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "./../utils/firebase";
 
 export const AuthContext = createContext();
 
@@ -13,27 +15,34 @@ export const useAuthContext = () => {
 };
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   auth.languageCode = "it";
-
   const [user, setUser] = useState(null);
   const [authError, setAuthErrorr] = useState(null);
+  const colRef = collection(db, "users");
 
-  //   Functio
+  //   Function to use auth based on provider
   const authFunction = (auth, provider, authProvider) => {
     return signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = authProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         const user = result.user;
-        console.log({ token }, { user }, { credential });
+        console.log(user);
         setUser(user);
+        addDoc(colRef, {
+          token: user.accessToken,
+          name: user.displayName,
+          email: user.email,
+          image: user.photoURL,
+        })
+          .then(() => {
+            navigate("/chats");
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = authProvider.credentialFromError(error);
-        console.error(errorCode, errorMessage, email, credential);
+        console.error(errorCode, errorMessage);
         setAuthErrorr(error);
       });
   };
