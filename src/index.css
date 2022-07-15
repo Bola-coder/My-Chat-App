@@ -6,7 +6,9 @@
 }
 
 html {
-  --bacground-color-main: #f2eded;
+  --background-color-main: #f2eded;
+  --bg-white: #fff;
+  --bg-black: rgb(188, 179, 179);
   --text-color-main: #038555;
   --text-color-secondary: #0ab878;
   --text-color-tertiary: #b2c209;
@@ -18,6 +20,6 @@ body {
   font-family: "Inter", sans-serif;
   font-family: "Poppins", sans-serif;
   font-family: "Roboto", sans-serif;
-  background-color: var(--bacground-color-main);
+  background-color: var(--background-color-main);
   font-weight: 400;
 }

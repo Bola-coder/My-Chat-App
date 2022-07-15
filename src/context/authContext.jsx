@@ -4,7 +4,7 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "./../utils/firebase";
 
@@ -21,6 +21,37 @@ const AuthProvider = ({ children }) => {
   const [authError, setAuthErrorr] = useState(null);
   const colRef = collection(db, "users");
 
+  //   Function to add user to db if user doesn't exist already:
+  const addToDb = (user) => {
+    let userExist;
+    getDocs(colRef)
+      .then((snapshot) => {
+        userExist = snapshot.docs.some(
+          (doc) => doc.data().email === user.email
+        );
+      })
+      .then(() => {
+        if (!userExist) {
+          addDoc(colRef, {
+            token: user.accessToken,
+            name: user.displayName,
+            email: user.email,
+            image: user.photoURL,
+          })
+            .then(() => {
+              navigate("/chats");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          console.log("user Exist");
+          navigate("/chats");
+        }
+      })
+      .catch((err) => console.log("Error", err));
+  }; // End of addToDB
+
   //   Function to use auth based on provider
   const authFunction = (auth, provider, authProvider) => {
     return signInWithPopup(auth, provider)
@@ -28,16 +59,7 @@ const AuthProvider = ({ children }) => {
         const user = result.user;
         console.log(user);
         setUser(user);
-        addDoc(colRef, {
-          token: user.accessToken,
-          name: user.displayName,
-          email: user.email,
-          image: user.photoURL,
-        })
-          .then(() => {
-            navigate("/chats");
-          })
-          .catch((error) => console.log(error));
+        addToDb(user);
       })
       .catch((error) => {
         const errorCode = error.code;
