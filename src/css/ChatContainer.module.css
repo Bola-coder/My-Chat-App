@@ -1,7 +1,34 @@
-.chat__container {
-  /* padding: 20px; */
+.head {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 10vh;
 }
 
-.chat__body{
+.head h2 {
+  font-size: 1.5rem;
+  color: var(--text-color-main);
+  letter-spacing: 2px;
+}
+
+.head button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 0;
+  background-color: var(--text-color-main);
+  color: var(--text-color-white);
+  letter-spacing: 2px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.head button:hover {
+  background-color: var(--bg-white);
+  border: 2px solid var(--text-color-main);
+  color: var(--text-color-main);
+}
+
+.chat__body {
   display: flex;
 }

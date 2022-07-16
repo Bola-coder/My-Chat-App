@@ -6,8 +6,10 @@ import ChatContent from "./ChatContent";
 const ChatContainer = () => {
   return (
     <section className={style.chat__container}>
-      <h2>Abatoms Chat</h2>
-      <button>Logout</button>
+      <div className={style.head}>
+        <h2>Abatoms Chat</h2>
+        <button>Logout</button>
+      </div>
       <div className={style.chat__body}>
         <MessageList />
         <ChatContent />
