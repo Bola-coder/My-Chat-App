@@ -1,3 +1,7 @@
 .chat__container {
   /* padding: 20px; */
 }
+
+.chat__body{
+  display: flex;
+}

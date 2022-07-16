@@ -1,0 +1,24 @@
+.chatContentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatContentHeader__text {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.chatContentHeader__text p {
+  margin-left: 20px;
+}
+
+.chatContentHeader__icon {
+  margin-right: 30px;
+}
+
+.chatContentHeader__icon svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+}

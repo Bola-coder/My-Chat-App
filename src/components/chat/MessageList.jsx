@@ -12,43 +12,43 @@ const MessageList = () => {
       </div>
       <div className={style.messageList__content}>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
         <div className={style.messageList__item}>
-          <img src={Avatar} alt=""  />
+          <img src={Avatar} alt="" />
           <p>Name of Message</p>
         </div>
       </div>
