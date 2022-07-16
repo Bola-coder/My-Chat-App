@@ -1,4 +1,5 @@
 .chatContent {
   flex: 3.5;
   padding: 10px;
+  overflow-x: auto;
 }

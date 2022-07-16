@@ -1,0 +1,32 @@
+.messageContent {
+  margin: auto;
+  padding: 20px;
+}
+
+.messages__received {
+  margin: auto;
+}
+
+.messages__sent {
+  margin-left: 70%;
+  width: 30%;
+}
+
+.messages__received p {
+  width: 30%;
+  font-size: 1.2rem;
+  padding: 15px;
+  background-color: var(--text-color-main);
+  margin-bottom: 7px;
+  border-radius: 10px;
+  color: var(--text-color-white);
+}
+
+.messages__sent p {
+  font-size: 1.2rem;
+  padding: 15px;
+  background-color: var(--text-color-tertiary);
+  margin-bottom: 7px;
+  border-radius: 10px;
+  color: var(--text-color-white);
+}

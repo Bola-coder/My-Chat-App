@@ -12,6 +12,7 @@
 
 .chatContentHeader__text p {
   margin-left: 20px;
+  font-weight: 700;
 }
 
 .chatContentHeader__icon {
