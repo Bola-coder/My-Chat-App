@@ -1,6 +1,23 @@
 .messageContent {
   margin: auto;
   padding: 20px;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-black) var(--background-color-main);
+}
+.messageContent::-webkit-scrollbar {
+  width: 12px;
+}
+.messageContent::-webkit-scrollbar-track {
+  background: var(--background-color-main);
+}
+
+.messageContent::-webkit-scrollbar-thumb {
+  background-color: var(--bg-black);
+  border-radius: 20px;
+  border: 3px solid var(--background-color-main);
 }
 
 .messages__received {
