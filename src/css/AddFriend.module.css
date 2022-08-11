@@ -1,0 +1,46 @@
+.add__friends {
+  padding: 20px;
+}
+
+.add__friends__title {
+  text-align: center;
+  color: var(--text-color-secondary);
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.friends {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 4%;
+}
+
+.friend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.friend p {
+  color: var(--text-color-secondary);
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.friend button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 5px;
+  background-color: var(--text-color-main);
+  color: var(--text-color-white);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.friend button:hover {
+  color: var(--text-color-main);
+  background-color: var(--bg-white);
+  border: 2px solid var(--text-color-main);
+}

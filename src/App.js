@@ -4,6 +4,7 @@ import MessageProvider from "./context/messageContext";
 import Homepage from "./components/Homepage";
 import Authenticate from "./components/Authenticate";
 import ChatContainer from "./components/chat/ChatContainer";
+import AddFriend from "./components/AddFriend";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path="/auth" element={<Authenticate />} />\
               <Route path="/chats" element={<ChatContainer />} />
+              <Route path="/add-friend" element={<AddFriend />} />
             </Routes>
           </div>
         </MessageProvider>

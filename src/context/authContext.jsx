@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
             name: user.displayName,
             email: user.email,
             image: user.photoURL,
+            friends: [],
           })
             .then(() => {
               navigate("/chats");
@@ -45,7 +46,7 @@ const AuthProvider = ({ children }) => {
               console.log(error);
             });
         } else {
-          console.log("user Exist");
+          console.log("User Exist");
           navigate("/chats");
         }
       })
@@ -53,7 +54,7 @@ const AuthProvider = ({ children }) => {
   }; // End of addToDB
 
   //   Function to use auth based on provider
-  const authFunction = (auth, provider, authProvider) => {
+  const authFunction = (auth, provider) => {
     return signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
@@ -72,13 +73,13 @@ const AuthProvider = ({ children }) => {
   //   Sign up with google function.
   function authWithGoogle() {
     const provider = new GoogleAuthProvider();
-    authFunction(auth, provider, GoogleAuthProvider);
+    authFunction(auth, provider);
   }
 
   //   Sign up with Facebook Option
   function authWithFacebook() {
     const provider = new FacebookAuthProvider();
-    authFunction(auth, provider, FacebookAuthProvider);
+    authFunction(auth, provider);
   }
 
   const values = {

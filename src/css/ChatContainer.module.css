@@ -12,8 +12,13 @@
   letter-spacing: 2px;
 }
 
+.head div {
+  padding: 20px;
+}
+
 .head button {
   padding: 10px 15px;
+  margin-left: 20px;
   font-size: 1rem;
   border: 0;
   background-color: var(--text-color-main);
