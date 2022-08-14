@@ -1,5 +1,4 @@
 import React, { useState, useContext, createContext } from "react";
-import { useAuthContext } from "./authContext";
 import { collection, onSnapshot, getDocs } from "firebase/firestore";
 import { db } from "./../utils/firebase";
 
@@ -9,7 +8,6 @@ export const useMessageContext = () => {
 };
 
 const MessageProvider = ({ children }) => {
-  const { user } = useAuthContext();
   const colRef = collection(
     db,
     "messages",
@@ -33,8 +31,8 @@ const MessageProvider = ({ children }) => {
     getDocs(userColRef).then((docs) => {
       docs.forEach((doc) => {
         if (
-          user?.email !== doc.data()?.email &&
-          !doc.data()?.friends.includes(email)
+          email === doc.data().email &&
+          !doc.data().friends.includes(email)
         ) {
           console.log("Friend request sent.");
         }
@@ -42,11 +40,11 @@ const MessageProvider = ({ children }) => {
     });
   };
 
-  addFriend();
 
   const values = {
     messages,
     setMessages,
+    addFriend,
   };
 
   return (

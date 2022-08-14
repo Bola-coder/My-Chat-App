@@ -40,14 +40,14 @@ const AuthProvider = ({ children }) => {
             friends: [],
           })
             .then(() => {
-              navigate("/chats");
+              navigate("/chats", { replace: true });
             })
             .catch((error) => {
               console.log(error);
             });
         } else {
-          console.log("User Exist");
-          navigate("/chats");
+          // console.log("User Exist");
+          navigate("/chats", { replace: true });
         }
       })
       .catch((err) => console.log("Error", err));
@@ -57,10 +57,10 @@ const AuthProvider = ({ children }) => {
   const authFunction = (auth, provider) => {
     return signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        setUser(user);
-        addToDb(user);
+        const newUser = result.user;
+        console.log(newUser);
+        setUser(newUser);
+        addToDb(newUser);
       })
       .catch((error) => {
         const errorCode = error.code;
