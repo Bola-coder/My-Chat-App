@@ -8,7 +8,7 @@ const AddFriend = () => {
 
   const addNewFriend = () => {
     console.log(user?.email);
-    addFriend(user?.email);
+    addFriend("Newly added email");
   };
 
   return (

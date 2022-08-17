@@ -1,8 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +22,18 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authError, setAuthErrorr] = useState(null);
   const colRef = collection(db, "users");
+
+  useEffect(() => {
+    const unsuscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsuscribe;
+  }, []);
 
   //   Function to add user to db if user doesn't exist already:
   const addToDb = (user) => {
@@ -59,7 +73,6 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         const newUser = result.user;
         console.log(newUser);
-        setUser(newUser);
         addToDb(newUser);
       })
       .catch((error) => {
@@ -82,9 +95,18 @@ const AuthProvider = ({ children }) => {
     authFunction(auth, provider);
   }
 
+  // Sign out currently logged in user
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sign out successful");
+      })
+      .catch((err) => console.log(err));
+  };
   const values = {
     authWithGoogle,
     authWithFacebook,
+    logout,
     user,
     authError,
   };

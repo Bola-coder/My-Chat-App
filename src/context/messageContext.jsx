@@ -1,6 +1,14 @@
 import React, { useState, useContext, createContext } from "react";
-import { collection, onSnapshot, getDocs } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  doc,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { db } from "./../utils/firebase";
+import { useAuthContext } from "./authContext";
 
 const MessageContext = createContext();
 export const useMessageContext = () => {
@@ -16,10 +24,10 @@ const MessageProvider = ({ children }) => {
     "sZr3py8jWOuFkKQ9mBJy",
     "messageContent"
   );
-
   const userColRef = collection(db, "users");
-
   const [messages, setMessages] = useState("");
+  const [userId, setUserId] = useState("");
+  const { user } = useAuthContext();
 
   onSnapshot(colRef, (snapshot) => {
     snapshot.forEach((doc) => {
@@ -29,17 +37,30 @@ const MessageProvider = ({ children }) => {
 
   const addFriend = (email) => {
     getDocs(userColRef).then((docs) => {
-      docs.forEach((doc) => {
+      docs.forEach((docu) => {
         if (
-          email === doc.data().email &&
-          !doc.data().friends.includes(email)
+          user?.email === docu.data().email &&
+          !docu.data().friends.includes(email)
         ) {
-          console.log("Friend request sent.");
+          setUserId(docu.id);
+          console.log(docu.id);
+          const docRef = doc(db, "users", userId);
+          updateDoc(docRef, {
+            friends: arrayUnion(email),
+          })
+            .then(() => {
+              console.log("Friend added");
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+        } else {
+          console.log(`${email} is already your friend`);
+          return;
         }
       });
     });
   };
-
 
   const values = {
     messages,
