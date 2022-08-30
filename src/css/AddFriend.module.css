@@ -9,8 +9,24 @@
   margin-top: 10px;
 }
 
+.backBtn{
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  background-color: var(--text-color-main);
+  color: var(--text-color-white);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  color: var(--text-color-main);
+  background-color: var(--bg-white);
+  border: 2px solid var(--text-color-main);
+}
+
 .friends {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   margin-top: 4%;
 }
@@ -25,7 +41,7 @@
 .friend p {
   color: var(--text-color-secondary);
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   letter-spacing: 2px;
 }
 

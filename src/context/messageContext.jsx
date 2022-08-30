@@ -17,7 +17,7 @@ export const useMessageContext = () => {
 const MessageProvider = ({ children }) => {
   const userColRef = collection(db, "users");
   const [messages, setMessages] = useState("");
-  const [userList, setUserList] = useState(null);
+  const [userList, setUserList] = useState("");
   const [userId, setUserId] = useState("");
   const { user } = useAuthContext();
 
@@ -53,16 +53,13 @@ const MessageProvider = ({ children }) => {
   };
 
   const getAllUsersNotInFriendList = (currentUser) => {
-    let tempUserList = [];
+    setUserList("")
     getDocs(userColRef).then((snapshot) => {
       snapshot.docs.forEach((document) => {
-        tempUserList.push(document.data().email);
+        setUserList(prev => [...prev, document.data().email]);
       });
     });
-    tempUserList = tempUserList.filter(
-      (tempUser) => tempUser !== currentUser.email
-    );
-    setUserList(tempUserList);
+    
   };
 
   const values = {
