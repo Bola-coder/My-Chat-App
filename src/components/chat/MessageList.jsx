@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { FaEdit } from "react-icons/fa";
+import { useMessageContext } from "../../context/messageContext";
+import { useAuthContext } from "../../context/authContext";
 import Avatar from "./../../images/avatar.png";
 import style from "./../../css/MessageList.module.css";
 
 const MessageList = () => {
+  const {friends, getFriendList} = useMessageContext();
+  const {user} = useAuthContext();
+  useEffect(() => {
+    getFriendList(user)
+  }, [user])
+  console.log(friends)
   return (
     <div className={style.messageList}>
       <div className={style.messageList__header}>
@@ -11,46 +19,14 @@ const MessageList = () => {
         <FaEdit />
       </div>
       <div className={style.messageList__content}>
-        <div className={style.messageList__item}>
+      {
+        friends ? friends.map((friend, index) => (
+          <div className={style.messageList__item} key={index}>
           <img src={Avatar} alt="" />
-          <p>Name of Message</p>
+          <p>{friend}</p>
         </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
-        <div className={style.messageList__item}>
-          <img src={Avatar} alt="" />
-          <p>Name of Message</p>
-        </div>
+        )) : "Hello"
+      }
       </div>
     </div>
   );

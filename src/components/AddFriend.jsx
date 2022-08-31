@@ -12,7 +12,7 @@ const AddFriend = () => {
     getAllUsersNotInFriendList(user);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(userList);
+
 
   const addNewFriend = (userToAdd) => {
     addFriend(userToAdd);
@@ -36,7 +36,7 @@ const AddFriend = () => {
           </div>
         ))
       ) : (
-        <p>Other users not found</p>
+        <p className={style.error}>Other users not found</p>
       )}
       </div>
       </div>

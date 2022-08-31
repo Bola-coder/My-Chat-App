@@ -26,7 +26,7 @@
 }
 
 .friends {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
   margin-top: 4%;
 }
@@ -38,7 +38,7 @@
   padding: 20px;
 }
 
-.friend p {
+.friend p, .error {
   color: var(--text-color-secondary);
   font-weight: bold;
   font-size: 1.2rem;
@@ -60,3 +60,4 @@
   background-color: var(--bg-white);
   border: 2px solid var(--text-color-main);
 }
+
