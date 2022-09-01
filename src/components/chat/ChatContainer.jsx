@@ -1,9 +1,9 @@
 import React from "react";
 import MessageList from "./MessageList";
-import style from "./../../css/ChatContainer.module.css";
 import ChatContent from "./ChatContent";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
+import style from "./../../css/ChatContainer.module.css";
 
 const ChatContainer = () => {
   const { logout } = useAuthContext();

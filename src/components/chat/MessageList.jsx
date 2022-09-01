@@ -8,10 +8,12 @@ import style from "./../../css/MessageList.module.css";
 const MessageList = () => {
   const {friends, getFriendList} = useMessageContext();
   const {user} = useAuthContext();
+
   useEffect(() => {
     getFriendList(user)
   }, [user])
-  console.log(friends)
+
+  
   return (
     <div className={style.messageList}>
       <div className={style.messageList__header}>
@@ -22,10 +24,10 @@ const MessageList = () => {
       {
         friends ? friends.map((friend, index) => (
           <div className={style.messageList__item} key={index}>
-          <img src={Avatar} alt="" />
-          <p>{friend}</p>
+            <img src={Avatar} alt="" />
+            <p>{friend}</p>
         </div>
-        )) : "Hello"
+        )) : ("Hello")
       }
       </div>
     </div>

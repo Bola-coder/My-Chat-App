@@ -31,12 +31,12 @@ const MessageProvider = ({ children }) => {
             !docu.data().friends.includes(email)
           ) {
             setUserId(docu.id);
-            console.log(docu.id);
             const docRef = doc(db, "users", userId);
             updateDoc(docRef, {
               friends: arrayUnion(email),
             })
               .then(() => {
+                addCurrentUserToFriendList(user.email, email)
                 console.log("Friend added");
               })
               .catch((err) => {
@@ -47,11 +47,28 @@ const MessageProvider = ({ children }) => {
             return;
           }
         });
+      }).catch(err => {
+        console.log('Getting document error occured: ' , err)
       })
-      .then(() => {
-        return;
-      });
   };
+
+  // A function to add the current user to a new friend friend's list
+  const addCurrentUserToFriendList = (currentUserEmail, friendEmail) => {
+    getDocs(userColRef).then(snapshot => {
+      snapshot.docs.forEach(document => {
+        if(document.data().email === friendEmail){
+          const docId = document.id;
+          const  documentRef = doc(userColRef, docId)
+          updateDoc(documentRef, {
+            friends: arrayUnion(currentUserEmail)
+          })
+          .then(() => {
+            console.log("Current user has been added to friend email");
+          })
+        }
+      })
+    })
+  }
 
   const getAllUsersNotInFriendList = (currentUser) => {
     getDocs(userColRef).then((snapshot) => {
@@ -70,7 +87,6 @@ const MessageProvider = ({ children }) => {
         }
       })
     })
-    console.log(friends);
   }
 
 
@@ -78,8 +94,6 @@ const MessageProvider = ({ children }) => {
     messages,
     userList,
     friends,
-    setUserList,
-    setMessages,
     addFriend,
     getAllUsersNotInFriendList,
     getFriendList,
