@@ -74,7 +74,9 @@ const MessageProvider = ({ children }) => {
     getDocs(userColRef).then((snapshot) => {
       setUserList("")
       snapshot.docs.forEach((document) => {
-        setUserList(prev => [...prev, document.data().email]);
+        if(document.data().email !== currentUser.email){
+          setUserList(prev => [...prev, document.data().email]);
+        }
       });
     });
   };

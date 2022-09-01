@@ -11,9 +11,10 @@ const MessageList = () => {
 
   useEffect(() => {
     getFriendList(user)
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  
+
   return (
     <div className={style.messageList}>
       <div className={style.messageList__header}>
